@@ -280,15 +280,15 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
 
     def setup(self):
         """Build up the UI by initializing widgets."""
-        from ranger.gui.widgets.titlebar import TitleBar
+        # from ranger.gui.widgets.titlebar import TitleBar
         from ranger.gui.widgets.console import Console
         from ranger.gui.widgets.statusbar import StatusBar
         from ranger.gui.widgets.taskview import TaskView
         from ranger.gui.widgets.pager import Pager
 
         # Create a titlebar
-        self.titlebar = TitleBar(self.win)
-        self.add_child(self.titlebar)
+        #self.titlebar = TitleBar(self.win)
+        # self.add_child(self.titlebar)
 
         # Create the browser view
         self.settings.signal_bind('setopt.viewmode', self._set_viewmode)
@@ -357,10 +357,10 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
         self.termsize = self.win.getmaxyx()
         y, x = self.termsize
 
-        self.browser.resize(self.settings.status_bar_on_top and 2 or 1, 0, y - 2, x)
+        self.browser.resize(0, 0, y - 1, x)
         self.taskview.resize(1, 0, y - 2, x)
         self.pager.resize(1, 0, y - 2, x)
-        self.titlebar.resize(0, 0, 1, x)
+        # self.titlebar.resize(0, 0, 1, x)
         self.status.resize(self.settings.status_bar_on_top and 1 or y - 1, 0, 1, x)
         self.console.resize(y - 1, 0, 1, x)
 
@@ -471,10 +471,11 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
         self.taskview.focused = False
 
     def throbber(self, string='.', remove=False):
-        if remove:
-            self.titlebar.throbber = type(self.titlebar).throbber
-        else:
-            self.titlebar.throbber = string
+#         if remove:
+            # self.titlebar.throbber = type(self.titlebar).throbber
+        # else:
+            # self.titlebar.throbber = string
+        return
 
     # Handles window renaming behaviour of the terminal multiplexers
     # GNU Screen and Tmux
